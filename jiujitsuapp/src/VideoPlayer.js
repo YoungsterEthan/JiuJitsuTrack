@@ -61,21 +61,28 @@ ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         });
     };
 
+
+
     return (
         <div>
             <input type="file" accept="video/*" onChange={handleVideoChange} />
             {videoSrc && (
                 <div>
-                    <video ref={videoRef} onClick={handleVideoClick} controls width="100%" height="auto">
-                        <source src={videoSrc} type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                    <canvas ref={canvasRef} style={{position: 'absolute', top: '0', left: '0', pointerEvents: 'none', backgroundColor: 'rgba(255,255,255,0.5)'}}></canvas>
-                    <button onClick={viewCanvasContent}>View Canvas Content</button> {/* Added button */}
+                    <div className="video-container">
+                        <video ref={videoRef} onClick={handleVideoClick} controls>
+                            <source src={videoSrc} type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div className="canvas-container">
+                        <canvas ref={canvasRef} style={{position: 'absolute', top: '0', left: '0', pointerEvents: 'none', backgroundColor: 'rgba(255,255,255,0.5)'}}></canvas>
+                        <button onClick={viewCanvasContent}>View Canvas Content</button> {/* Added button */}
+                    </div>
                 </div>
             )}
         </div>
     );
+
 }
 
 export default VideoPlayer;
